@@ -33,21 +33,24 @@ void insertAtHead(Node* &head,int d){
     if(head==NULL){
         Node*temp=new Node(d);
         head=temp;
-    }
-    Node*temp=new Node(d);
-    temp->next=head;
-    head=temp;
+    }else{
+       Node*temp=new Node(d);
+       temp->next=head;
+       head=temp;
+    }   
 }
 
 void insertAtTail(Node* &tail, int d){
     if(tail==NULL){
         Node* temp= new Node(d);
         tail=temp;
+    }else{
+       Node* temp= new Node(d);
+       tail->next=temp;
+       tail=temp;
     }
+    return;
     
-    Node* temp= new Node(d);
-    tail->next=temp;
-    tail=temp;
     
 }
 
@@ -65,10 +68,12 @@ void insertAtPosition(Node* &head, Node* &tail, int position, int d){
     }
     if(temp->next==NULL){
         insertAtTail(tail,d);
+    }else{
+       Node* nodeToInsert= new Node(d);
+       nodeToInsert->next=temp->next;
+       temp->next=nodeToInsert;
     }
-    Node* nodeToInsert= new Node(d);
-    nodeToInsert->next=temp->next;
-    temp->next=nodeToInsert;
+    return;   
     
     
 }
@@ -90,6 +95,7 @@ void deleteNode(Node*head,int position){
        current->next=NULL;
        delete current;
     }
+    return;
 }
 void print(Node* &head, Node* &tail){
     if(head==NULL){
@@ -102,6 +108,7 @@ void print(Node* &head, Node* &tail){
         cout<<"data store is: " <<temp->data<<endl;
         temp=temp->next;
     }
+    return;
 }
 int main() {
     Node*temp=new Node(NULL);
