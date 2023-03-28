@@ -4,14 +4,16 @@
 using namespace std;
 
 bool check(vector<int>& arr, int n, int i){
+  //base case
   if(i==(n-1)){
     return true ;
   }
-
+  
+  //solve one case 
   if(arr[i]>arr[i+1]){
     return false;
   }
-  
+  //REcursive case (must use Retrun to get Responce in BooL)
   return check(arr,n,i+1);
   
   
