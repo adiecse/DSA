@@ -1,36 +1,38 @@
-//Not Working for even number of members of array
-
 #include <iostream>
 #include <limits.h>
 #include <vector>
 using namespace std;
 
-bool BinarySearch(vector<int> &arr, int start, int end, int key) {
-  // base case 1
-  if (start > end) {
+
+bool BinarySearch(vector<int> &v, int start, int end,int key){
+  if(start>end){
     return false;
   }
-  // base case 2
-  if (arr[start] == arr[end]) {
+
+  int mid=(start+end)/2;
+  if(v[mid]==key){
     return true;
   }
-  int mid = (start + end) / 2;
-  // key
-  if (key > arr[mid]) {
-    return BinarySearch(arr, (mid + 1), end, key);
-  } else {
-    return BinarySearch(arr, start, (mid - 1), key);
+  //Recursive key<mid
+  if(v[mid]>key){
+    return BinarySearch(v,  start, (mid-1),key);
+  }else{
+    return BinarySearch(v,  (mid+1), end,key);
   }
 }
 
 int main() {
-  int mini = 0;
-  vector<int> arr = {7, 8, 10, 12, 18, 20,31};
-  int n = arr.size();
-  bool ElementFound = BinarySearch(arr, 0, (n - 1), 7);
-  if (ElementFound) {
-    cout << "Element Found" << endl;
-  } else {
-    cout << "Element not Found" << endl;
+  vector<int>  v={2,4,6,8,10,12};
+  int n=v.size();
+  
+  int start=0;
+  int end=n-1;
+  int key=21;
+  bool KeyFound=BinarySearch(v,start,end,key);
+  if(KeyFound){
+    cout<<"Key Found"<<endl;
+  }else{
+    cout<<"Key not found"<<endl;
   }
+  
 }
