@@ -9,8 +9,6 @@ void reverseString(string &str, int start, int end, string ans) {
     return;
   }
 
-  
-
   ans[end] = str[start];
   ans[start] = str[end];
 
