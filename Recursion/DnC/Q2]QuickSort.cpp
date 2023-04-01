@@ -3,49 +3,48 @@
 using namespace std;
 
 void QuickSort(int arr[], int s, int e){
-  int pivotIndex=s;
-  int pivotele= arr[pivotIndex];
-  int count=0;
+        int m=(s+e)/2;
+        int pivotIndex= s;
+        int pivotele=arr[s];
 
-  if(s>=e){
-    return;
-  }
+        if(s>=e){
+           return;
+        }
 
-  //counting smaller numbers;
-  for(int i=s+1; i<=e; i++){
-    if(arr[i]<pivotele){
-      count++;
-    }
-  }
-  
-  //Replacing postion of comp with right position element
-  int posi = s+count;
-  swap(arr[posi],arr[pivotIndex]);
-  pivotIndex=posi;
+        int count=0;
+        for(int i=s+1; i<=e; i++){
+             if(arr[i]<pivotele){
+                     count++;
+             }
+        }
 
-  int i=s;
-  int j=e;
+        int posi=s+count;
+        swap(arr[posi],arr[pivotIndex]);
+        pivotIndex=posi;
 
-  while(i<pivotIndex && j>pivotIndex){
-    while(arr[i]<arr[pivotIndex]){
-      i++;
-    }
+        int i=s;
+        int j=e;
 
-    while(arr[j]>arr[pivotIndex]){
-      j--;
-    }
+        while(i<pivotIndex && j>pivotIndex){
+                while(arr[i]<arr[pivotIndex]){
+                        i++;
+                }
 
-    if(i<pivotIndex && j>pivotIndex){
-      swap(arr[i],arr[j]);
-    }
+                while(arr[j]>arr[pivotIndex]){
+                        j++;
+                }
 
-    QuickSort(arr,s,(pivotIndex-1));
+                if(i<pivotIndex && j>pivotIndex){
+                        swap(arr[i],arr[j]);
+                }
+        }
 
-    QuickSort(arr,(pivotIndex+1),e);
-    
-  }
+        QuickSort(arr,s,pivotIndex-1);
 
+        QuickSort(arr,pivotIndex+1,e);
 }
+
+
 
 int main(){
   int arr[]={3,1,4,7,2};
