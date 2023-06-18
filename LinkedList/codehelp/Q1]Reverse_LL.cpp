@@ -27,7 +27,7 @@ Node* reverseLL(Node* &prev, Node* &curr){
     //1 case solved now rec. will take care
     Node* next=curr->next;
     curr->next=prev;
-    reverseLL(curr,next);
+    return reverseLL(curr,next);
 }
 
 
