@@ -62,6 +62,27 @@ void isCircular2(Node* &head){
         return;
     }
 }
+
+bool isCircular3(Node* &head){
+    Node* slow=head;
+    Node * fast=head;
+
+    while(fast!=NULL ){
+        fast=fast->next;
+        if(fast!=NULL ){
+            fast=fast->next;
+            slow=slow->next;
+
+        }
+
+        if(fast==slow){
+            return true;
+        }
+    }
+    return false;
+}
+
+
 int main(){
     
     Node* head= new Node(1);
