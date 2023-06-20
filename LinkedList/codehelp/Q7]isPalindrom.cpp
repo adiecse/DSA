@@ -58,15 +58,16 @@ Node* find_mid(Node* &head){
    Node* fast=head; //if u don head->next as fast. then it will give second mid node n even number of LL
 
    while(fast!=NULL){
-    fast=fast->next;
-    if(fast!=NULL){
-        fast=fast->next;
-        slow=slow->next;
+     fast=fast->next;
+     if(fast!=NULL){
+           fast=fast->next;
+           slow=slow->next;
+        }
     }
-   }
    return slow;
 
 }
+
 Node* revLL(Node* &head){
     Node* curr=head;
     Node* prev=NULL;
@@ -81,7 +82,22 @@ Node* revLL(Node* &head){
 
     return prev;
 }
+
 bool is_palindrome(Node* &head){
+    //Linked List is empty
+    if(head==NULL){
+        cout<<"Linked List is empty"<<endl;
+        return false;
+    } 
+
+    //only one node is present in Linked list
+    if(head->next==NULL) {
+        return true;
+    }  
+
+    //number of nodes are greater than 1 
+
+
     Node* mid= find_mid(head); 
     Node* temp1=mid->next;
     mid->next=revLL(temp1); //reversing LL after the mid 
