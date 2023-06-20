@@ -1,3 +1,6 @@
+// #Approach1 make 3 link list with starting node -1 and append 0,1,2 while moving from head to tail of main LL and then removes nodes with -1 value
+// #Approach2 value replace with 2 pointer swap(values) zero in the link and put them in starting
+// #Approach3 think there is one
 #include<iostream>
 using namespace std;
 
@@ -36,45 +39,92 @@ void print(Node* &head){
 }
 
 Node* sort012(Node* &head){
+    if(head==NULL){
+        cout<<"can't sort the linked list"<<endl;
+        return NULL;
+    }
+
+    if(head->next==NULL){
+        return head;
+    }
+
     Node* temp=head;
     Node* zerohead=new Node(-1);
+    Node* zerotail=zerohead;
+
     Node* onehead=new Node(-1);
+    Node* onetail=onehead;
+
     Node* twohead=new Node(-1);
-    Node* temp1=zerohead;
-    Node* temp2=onehead;
-    Node* temp3=twohead;
+    Node* twotail=twohead;
+
     while(temp!=NULL){
         if(temp->data==0){
-            Node * zeronode=new Node(temp->data);
-            temp1->next=zeronode;
-            temp1=temp1->next;
+            Node * zeronode=new Node(0);
+            zerotail->next=zeronode;
+            zerotail=zerotail->next;
         }
 
         if(temp->data==1){
-            Node * onenode=new Node(temp->data);
-            temp2->next=onenode;
-            temp2=temp2->next;
+            Node * onenode=new Node(1);
+            onetail->next=onenode;
+            onetail=onetail->next;
         }
 
         if(temp->data==2){
-            Node * twonode=new Node(temp->data);
-            temp3->next=twonode;
-            temp3=temp3->next;
+            Node * twonode=new Node(2);
+            twotail->next=twonode;
+            twotail=twotail->next;
         }
         
         temp=temp->next;
 
     }
-    head=zerohead->next;
-    temp1->next=onehead->next;
-    temp2->next=twohead->next;
-    zerohead->next=NULL;
-    onehead->next=NULL;
-    twohead->next=NULL;
-    delete zerohead;
-    delete onehead;
-    delete twohead;
-    print(head);
+
+
+  if(zerohead->next!=NULL){
+       head=zerohead->next;
+       zerohead->next=NULL;
+       delete zerohead;
+
+      if(onehead->next!=NULL){
+         zerotail->next=onehead->next;
+         onehead->next=NULL;
+         delete onehead;
+
+         onetail->next=twohead->next;   
+         twohead->next=NULL;
+         delete twohead;
+
+        }else{
+         zerotail->next=twohead->next;
+         twohead->next=NULL;
+         delete twohead;
+
+        }
+    }else{
+
+      if(onehead->next!=NULL){
+         head=onehead->next;
+         zerotail->next=onehead->next;
+         onehead->next=NULL;
+         delete onehead;
+
+         onetail->next=twohead->next;   
+         twohead->next=NULL;
+         delete twohead;
+
+        }else{
+         head=twohead->next;
+         zerotail->next=twohead->next;
+         twohead->next=NULL;
+         delete twohead;
+
+        }
+    }  
+    
+
+    
     return head;
 
 
@@ -83,18 +133,14 @@ Node* sort012(Node* &head){
 
 int main(){
     
-    Node* f= new Node(1);
-    Node* s= new Node(2);
-    Node* t= new Node(1);
-    Node* fo=new Node(0);
+    Node* f= new Node(2);
+    Node* s= new Node(0);
+    Node* t= new Node(2);
+    Node* fo=new Node(1);
     Node* fi=new Node(2);
-    Node* si=new Node(2);
-    Node* se=new Node(0);
-    Node* e=new Node(1);
-
-
-
-
+    Node* si=new Node(0);
+    Node* se=new Node(1);
+    Node* e=new Node(2);
 
     f->next=s;
     s->next=t;
@@ -103,6 +149,9 @@ int main(){
     fi->next=si;
     si->next=se;
     se->next=e;
+
+
+    Node* temp=NULL;
     Node* start=sort012(f);
     cout<<"printing the LL"<<endl;
     print(start);

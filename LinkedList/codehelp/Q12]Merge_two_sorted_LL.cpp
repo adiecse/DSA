@@ -1,7 +1,3 @@
-// #Approach1 2 while loop
-// #Approach2 sort link list
-// #Approach3 use maps. 
-// last 2 approaches left
 #include<iostream>
 using namespace std;
 
@@ -40,23 +36,21 @@ void print(Node* &head){
 }
 
 Node* RemoveDup(Node* &head){
+     
     Node* curr=head;
     Node* temp;
      
      while(curr!=NULL){
-         Node* prev=curr;
          temp=curr->next;
          while(temp!=NULL){
              if(temp->data==curr->data){
                  Node* next=temp->next;
-                 prev->next=next;
+                 curr->next=next;
                  temp->next=NULL;
                  delete temp;
-                 temp=next;
-                 
+                 temp=next; 
              }else{
                  temp=temp->next;
-                 prev=prev->next;
                 }
             }
             curr=curr->next;
