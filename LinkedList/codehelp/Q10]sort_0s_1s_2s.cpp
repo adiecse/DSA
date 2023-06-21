@@ -38,98 +38,173 @@ void print(Node* &head){
     }
 }
 
-Node* sort012(Node* &head){
-    if(head==NULL){
-        cout<<"can't sort the linked list"<<endl;
-        return NULL;
-    }
+// Node* sort012(Node* &head){   codehelp function
+//     if(head==NULL){
+//         cout<<"can't sort the linked list"<<endl;
+//         return NULL;
+//     }
 
-    if(head->next==NULL){
-        return head;
-    }
+//     if(head->next==NULL){
+//         return head;
+//     }
 
-    Node* temp=head;
-    Node* zerohead=new Node(-1);
-    Node* zerotail=zerohead;
+//     Node* temp=head;
+//     Node* zerohead=new Node(-1);
+//     Node* zerotail=zerohead;
 
-    Node* onehead=new Node(-1);
-    Node* onetail=onehead;
+//     Node* onehead=new Node(-1);
+//     Node* onetail=onehead;
 
-    Node* twohead=new Node(-1);
-    Node* twotail=twohead;
+//     Node* twohead=new Node(-1);
+//     Node* twotail=twohead;
 
-    while(temp!=NULL){
-        if(temp->data==0){
-            Node * zeronode=new Node(0);
-            zerotail->next=zeronode;
-            zerotail=zerotail->next;
+//     while(temp!=NULL){
+//         if(temp->data==0){
+//             Node * zeronode=new Node(0);
+//             zerotail->next=zeronode;
+//             zerotail=zerotail->next;
+//         }
+
+//         if(temp->data==1){
+//             Node * onenode=new Node(1);
+//             onetail->next=onenode;
+//             onetail=onetail->next;
+//         }
+
+//         if(temp->data==2){
+//             Node * twonode=new Node(2);
+//             twotail->next=twonode;
+//             twotail=twotail->next;
+//         }
+        
+//         temp=temp->next;
+
+//     }
+
+
+//   if(zerohead->next!=NULL){
+//        head=zerohead->next;
+//        zerohead->next=NULL;
+//        delete zerohead;
+
+//       if(onehead->next!=NULL){
+//          zerotail->next=onehead->next;
+//          onehead->next=NULL;
+//          delete onehead;
+
+//          onetail->next=twohead->next;   
+//          twohead->next=NULL;
+//          delete twohead;
+
+//         }else{
+//          zerotail->next=twohead->next;
+//          twohead->next=NULL;
+//          delete twohead;
+
+//         }
+//     }else{
+
+//       if(onehead->next!=NULL){
+//          head=onehead->next;
+//          zerotail->next=onehead->next;
+//          onehead->next=NULL;
+//          delete onehead;
+
+//          onetail->next=twohead->next;   
+//          twohead->next=NULL;
+//          delete twohead;
+
+//         }else{
+//          head=twohead->next;
+//          zerotail->next=twohead->next;
+//          twohead->next=NULL;
+//          delete twohead;
+
+//         }
+//     }  
+    
+
+    
+//     return head;
+
+
+// }
+
+  Node* sort012(Node* &head) {
+        
+        // Add code here
+        Node* zerohead=new Node(-1);
+        Node* zerotail=zerohead;
+        Node* onehead=new Node(-1);
+        Node* onetail=onehead;
+        Node* twohead=new Node(-1);
+        Node* twotail=twohead;
+        
+        Node* temp=head;
+        while(temp!=NULL){
+            if(temp->data==0){
+                Node* temp= new Node(0);
+                zerotail->next=temp;
+                zerotail=temp;
+                
+            }
+            if(temp->data==1){
+                Node* temp= new Node(1);
+                onetail->next=temp;
+                onetail=temp;  
+            }
+            if(temp->data==2){
+                Node* temp= new Node(2);
+                twotail->next=temp;
+                twotail=temp;
+            }
+            temp=temp->next;
         }
-
-        if(temp->data==1){
-            Node * onenode=new Node(1);
-            onetail->next=onenode;
-            onetail=onetail->next;
-        }
-
-        if(temp->data==2){
-            Node * twonode=new Node(2);
-            twotail->next=twonode;
-            twotail=twotail->next;
+        // Node* head;
+        if(zerohead->next!=NULL){
+            head=zerohead->next;
+            zerohead->next=NULL;
+            delete zerohead;
+            if(onehead->next!=NULL){
+               zerotail->next=onehead->next;
+               onetail->next=twohead->next;
+               
+               
+               
+               onehead->next=NULL;
+               delete onehead;
+               twohead->next=NULL;
+               delete twohead;
+  
+            }else{
+               zerotail->next=twohead->next; 
+               onehead->next=NULL;
+               delete onehead;
+               twohead->next=NULL;
+               delete twohead;
+            }
+        }else{
+            
+            if(onehead->next!=NULL){
+                head=onehead->next;
+                onetail->next=twohead->next;
+                
+                onehead->next=NULL;
+                delete onehead;
+                twohead->next=NULL;
+                delete twohead;
+                
+            }else{
+                head=twohead->next;
+                twohead->next=NULL;
+                delete twohead;
+            }
         }
         
-        temp=temp->next;
-
+        return head;
+        
+        
     }
-
-
-  if(zerohead->next!=NULL){
-       head=zerohead->next;
-       zerohead->next=NULL;
-       delete zerohead;
-
-      if(onehead->next!=NULL){
-         zerotail->next=onehead->next;
-         onehead->next=NULL;
-         delete onehead;
-
-         onetail->next=twohead->next;   
-         twohead->next=NULL;
-         delete twohead;
-
-        }else{
-         zerotail->next=twohead->next;
-         twohead->next=NULL;
-         delete twohead;
-
-        }
-    }else{
-
-      if(onehead->next!=NULL){
-         head=onehead->next;
-         zerotail->next=onehead->next;
-         onehead->next=NULL;
-         delete onehead;
-
-         onetail->next=twohead->next;   
-         twohead->next=NULL;
-         delete twohead;
-
-        }else{
-         head=twohead->next;
-         zerotail->next=twohead->next;
-         twohead->next=NULL;
-         delete twohead;
-
-        }
-    }  
-    
-
-    
-    return head;
-
-
-}
-
 
 int main(){
     
