@@ -1,3 +1,8 @@
+//#MOst IMP question  //solve it atleast three time on GFG. 
+// 5-6 edges are there  which u must handle them
+//Try  to solve it by recursive approach also
+//https://practice.geeksforgeeks.org/problems/pairwise-swap-elements-of-a-linked-list-by-swapping-data/1?page=1&difficulty[]=0&category[]=Linked%20List&sortBy=submissions
+//#Solve this question in notebook also by writing the algorithm
 class Solution
 {
     public:
