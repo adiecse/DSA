@@ -10,40 +10,29 @@ void print(stack<int> &st){
   return;
 }
 
-void insert_in_sorted(stack<int> &st ,int data){
-  
-  
+void insert_in_sorted(stack<int> &st ,int data) 
   if(st.empty()){
     st.push(data);
     return;
   }
   int top=st.top();
-
   if(top>=data){
-
-    st.push(data);
-    
-    
+    st.push(data); 
   }else{
-
     st.pop();
     insert_in_sorted(st ,data);
     st.push(top);
-  
   }
 }
 
 void compair(stack<int> &st){
-
   if(st.empty()){
     return;
   }
-
   int top=st.top();
   st.pop();
   compair(st);
-  insert_in_sorted(st,top);
-    
+  insert_in_sorted(st,top); 
 }
 
 int main() {
