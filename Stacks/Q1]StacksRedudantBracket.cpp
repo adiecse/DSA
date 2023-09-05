@@ -1,38 +1,38 @@
-//coding ninjas question
-//https://www.codingninjas.com/codestudio/problems/redundant-brackets_975473
 #include <bits/stdc++.h> 
-#include<stack>
 bool findRedundantBrackets(string &s)
-{ bool isRedudant;
-  char ch;
-  stack<char>st;
-  for(int i=0;i<s.length();i++){
-    ch=s[i];
-    if(ch=='('|| ch=='+'||ch=='-'||ch=='*'||ch=='/'){
-      st.push(ch);
-    }else{
-      if( ch==')'){
-         isRedudant=true;
+{
+    // Write your code here.
+    stack<char> st;
+    char ch;
+    
+    for(int i=0; i<s.length(); i++){
+        ch=s[i];
+        if(ch=='('  || ch=='+' || ch=='*' || ch=='/' || ch=='-') {
+            st.push(ch);
+        }else{
+           
+            if(ch==')'){
+               bool isRedundant=true;
 
-        while(st.top()!='('){
-          char top=st.top();
-          if(top=='+'|| top=='*'||top=='-'||top=='/'){
-            isRedudant=false;
-          }
-          //st.pop();
-          //st.pop();
+                while(st.top()!='('){
+                    char top=st.top();
+                    if(top=='+' || top=='*' || top=='/' || top=='-'){
+                        isRedundant=false;
+                        
+                    }
+                    st.pop();
+                }
+                if(isRedundant==true){
+                    return true;
+                }
+                st.pop();
+                
+
+            }
         }
-        if(isRedudant==true){
-          return true;
-        }
-        st.pop();  
-        //st.pop();
-      }
-      
     }
-  }
-  if(isRedudant==false){
     return false;
-  
-  }
+    // if(isRedundant==false){
+    //     return false;
+    // }
 }
